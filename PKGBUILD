@@ -1,4 +1,3 @@
-# $Id: PKGBUILD,v 1.12 2007/08/19 12:38:16 jgc Exp $
 # Maintainer: Jan de Groot <jgc@archlinxu.org>
 # Contri-butor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
