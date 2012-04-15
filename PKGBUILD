@@ -49,6 +49,7 @@ build() {
     --with-dhcpcd=/sbin/dhcpcd \
     --with-iptables=/usr/sbin/iptables \
     --with-systemdsystemunitdir=/usr/lib/systemd/system \
+    --with-udev-dir=/usr/lib/udev \
     --with-resolvconf=/usr/sbin/resolvconf \
     --with-session-tracking=ck \
     --with-wext=no \
