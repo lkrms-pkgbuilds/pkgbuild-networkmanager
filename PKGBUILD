@@ -66,6 +66,7 @@ package() {
   make DESTDIR="$pkgdir" install
 
   install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
+  install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
 
   rm -r "$pkgdir/var/run"
 }
