@@ -8,7 +8,7 @@
 pkgbase=networkmanager
 pkgname=(networkmanager libnm-glib)
 pkgver=0.9.8.10
-pkgrel=2
+pkgrel=3
 pkgdesc="Network Management daemon"
 arch=(i686 x86_64)
 license=(GPL2 LGPL2.1)
@@ -70,8 +70,9 @@ package_networkmanager() {
   make DESTDIR="$pkgdir" -C libnm-util uninstall
   make DESTDIR="$pkgdir" -C vapi uninstall
 
-  # Some includes are left over
+  # Some stuff to move is left over
   mv "$pkgdir/usr/include" ..
+  mv "$pkgdir/usr/lib/pkgconfig" ..
 
   install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
   install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
@@ -83,8 +84,9 @@ package_libnm-glib() {
   pkgdesc="NetworkManager library"
   depends=(libsystemd nss dbus-glib libutil-linux)
 
-  install -d "$pkgdir/usr"
+  install -d "$pkgdir/usr/lib"
   mv include "$pkgdir/usr"
+  mv pkgconfig "$pkgdir/usr/lib"
 
   cd NetworkManager-$pkgver
   make DESTDIR="$pkgdir" -C libnm-util install
