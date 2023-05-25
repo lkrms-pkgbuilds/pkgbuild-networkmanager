@@ -1,4 +1,5 @@
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Maintainer: Luke Arms <luke@arms.to>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
@@ -54,8 +55,12 @@ checkdepends=(
   python-dbus
 )
 _commit=b6cc7c7e695ba3b1f2a5c95b0d6df418b8556e57  # tags/1.42.6^0
-source=("git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit")
-b2sums=('SKIP')
+source=("git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit"
+        'fix-ppp-noipv6.patch'
+        'fix-ppp-disable-ipv6.patch')
+b2sums=('SKIP'
+        '6fada56a6cda4ca3628cd5be9413bd67357ccfda57b6944e964cf2508f99949c4769e25a7e353f3003fc43429ee52fa730337427c947d86331e5ec03621dcc74'
+        'd8253c951536c9daf84601b3be74fdbfc331031256518fb4077aea8ccc1b773aeb2d4f84af388fa7d14119504c1ae541ed2c149681ed898abd5091abd4336a92')
 
 pkgver() {
   cd NetworkManager
@@ -64,6 +69,8 @@ pkgver() {
 
 prepare() {
   cd NetworkManager
+  patch -p1 <"$srcdir/fix-ppp-noipv6.patch"
+  patch -p1 <"$srcdir/fix-ppp-disable-ipv6.patch"
 }
 
 build() {
@@ -112,7 +119,8 @@ check() {
 }
 
 _pick() {
-  local p="$1" f d; shift
+  local p="$1" f d
+  shift
   for f; do
     d="$srcdir/$p/${f#$pkgdir/}"
     mkdir -p "$(dirname "$d")"
