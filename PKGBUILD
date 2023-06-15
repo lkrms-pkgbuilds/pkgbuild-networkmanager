@@ -8,12 +8,12 @@
 pkgbase=networkmanager
 pkgname=(networkmanager libnm nm-cloud-setup)
 pkgver=1.42.6
-pkgrel=1
+pkgrel=2
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
 license=(GPL)
-_pppver=2.4.9
+_pppver=2.5.0
 makedepends=(
   audit
   bluez-libs
@@ -54,8 +54,10 @@ checkdepends=(
   python-dbus
 )
 _commit=b6cc7c7e695ba3b1f2a5c95b0d6df418b8556e57  # tags/1.42.6^0
-source=("git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit")
-b2sums=('SKIP')
+source=("git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit"
+        $pkgname-ppp-2.5.0.patch::https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/1607.patch)
+b2sums=('SKIP'
+        'afcf1410f89db950a7e7c2c0af3aaed174a43fae127c8a139431093a3ae9802542c40cf69faabd1d057563438b48f0a0b0d4c7fc188c13e9320d127e0034f181')
 
 pkgver() {
   cd NetworkManager
@@ -64,6 +66,7 @@ pkgver() {
 
 prepare() {
   cd NetworkManager
+  git apply ../$pkgname-ppp-2.5.0.patch
 }
 
 build() {
