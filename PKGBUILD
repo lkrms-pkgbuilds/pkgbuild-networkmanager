@@ -103,6 +103,10 @@ build() {
     -D qt=false
   )
 
+  # NM uses malloc_usable_size in code copied from systemd
+  export CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+  export CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+
   arch-meson NetworkManager build "${meson_options[@]}"
   meson compile -C build
 }
