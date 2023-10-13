@@ -12,7 +12,7 @@ pkgname=(
   nm-cloud-setup
 )
 pkgver=1.44.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
@@ -57,8 +57,12 @@ checkdepends=(
   python-dbus
 )
 _commit=8bee6ef894a27ffc8a464df3b32b03e811e1a15d  # tags/1.44.2^0
-source=("git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit")
-b2sums=('SKIP')
+source=(
+  "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit"
+  0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
+)
+b2sums=('SKIP'
+        'd5466c3edc1f989238bc5c414e5b166cf22cdf2bb21a59654e34bb9b930542945027856bb995eee322daa8e84b3c9c2a81ab5d1c20d498211a54426040cca9c8')
 
 pkgver() {
   cd NetworkManager
@@ -67,6 +71,9 @@ pkgver() {
 
 prepare() {
   cd NetworkManager
+
+  # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/1756
+  git apply -3 ../0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
 }
 
 build() {

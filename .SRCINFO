@@ -1,7 +1,7 @@
 pkgbase = networkmanager
 	pkgdesc = Network connection manager and user applications
 	pkgver = 1.44.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://networkmanager.dev/
 	arch = x86_64
 	license = GPL
@@ -41,7 +41,9 @@ pkgbase = networkmanager
 	makedepends = vala
 	makedepends = wpa_supplicant
 	source = git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=8bee6ef894a27ffc8a464df3b32b03e811e1a15d
+	source = 0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
 	b2sums = SKIP
+	b2sums = d5466c3edc1f989238bc5c414e5b166cf22cdf2bb21a59654e34bb9b930542945027856bb995eee322daa8e84b3c9c2a81ab5d1c20d498211a54426040cca9c8
 
 pkgname = networkmanager
 	depends = audit
