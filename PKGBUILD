@@ -12,7 +12,7 @@ pkgname=(
   nm-cloud-setup
 )
 pkgver=1.44.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
@@ -62,7 +62,7 @@ source=(
   0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
 )
 b2sums=('SKIP'
-        'd5466c3edc1f989238bc5c414e5b166cf22cdf2bb21a59654e34bb9b930542945027856bb995eee322daa8e84b3c9c2a81ab5d1c20d498211a54426040cca9c8')
+        '51674577e4a2786b6491fdf90cc90734da3792e0a7e224f0eecc9c485a5f81b68a71bb559b23d294d52dc9065ee82c997c31f9272504c3d753e0ffe1321367e9')
 
 pkgver() {
   cd NetworkManager
