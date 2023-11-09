@@ -1,4 +1,5 @@
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Maintainer: Luke Arms <luke@arms.to>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
@@ -60,9 +61,13 @@ _commit=8bee6ef894a27ffc8a464df3b32b03e811e1a15d  # tags/1.44.2^0
 source=(
   "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit"
   0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
+  0002-fix-ppp-disable-ipv6.patch
+  0003-fix-ppp-noipv6.patch
 )
 b2sums=('SKIP'
-        '51674577e4a2786b6491fdf90cc90734da3792e0a7e224f0eecc9c485a5f81b68a71bb559b23d294d52dc9065ee82c997c31f9272504c3d753e0ffe1321367e9')
+        '51674577e4a2786b6491fdf90cc90734da3792e0a7e224f0eecc9c485a5f81b68a71bb559b23d294d52dc9065ee82c997c31f9272504c3d753e0ffe1321367e9'
+        '91c6979be7a2d113ab7038380821a64a165151a4ca03a64549eecf61e4758e975cfe1be2493e0fddead2b8ec63a0b6ee668c5dc774ee734c07e2f0cfec790539'
+        '43d4a80fa47df876001f30ec8b9a8fb0b87df7d57ffff8e7451d94182c43a85a29ac02d94be8b86a754474767985a7e2f41a1ce4472b370d949a631f0060f92a')
 
 pkgver() {
   cd NetworkManager
@@ -74,6 +79,9 @@ prepare() {
 
   # https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/1756
   git apply -3 ../0001-connectivity-Make-curl-timeout-callback-non-repeatin.patch
+
+  patch -p1 <"$srcdir/fix-ppp-noipv6.patch"
+  patch -p1 <"$srcdir/fix-ppp-disable-ipv6.patch"
 }
 
 build() {
