@@ -20,7 +20,6 @@ arch=(x86_64)
 license=(LGPL-2.1-or-later)
 makedepends=(
   audit
-  bluez-libs
   curl
   dhclient
   dhcpcd
@@ -90,7 +89,6 @@ build() {
     # features
     -D iwd=true
     -D teamdctl=true
-    -D bluez5_dun=true
     -D ebpf=true
 
     # configuration plugins
@@ -134,7 +132,6 @@ _pick() {
 package_networkmanager() {
   depends=(
     audit
-    bluez-libs
     curl
     iproute2
     jansson
