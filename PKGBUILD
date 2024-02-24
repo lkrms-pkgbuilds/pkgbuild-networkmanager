@@ -13,7 +13,7 @@ pkgname=(
   networkmanager-docs
 )
 pkgver=1.46.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
@@ -89,7 +89,6 @@ build() {
     # features
     -D iwd=true
     -D teamdctl=true
-    -D ebpf=true
 
     # configuration plugins
     -D config_plugins_default=keyfile
