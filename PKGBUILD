@@ -56,16 +56,11 @@ checkdepends=(
   libx11
   python-dbus
 )
-_commit=e39f48a30a2ef7b445276a859bbd5255e4c5071d  # tags/1.46.0^0
 source=(
-  "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=$_commit"
+  # Can't locate the public key (sfaye@redhat.com, E472337703D0C46002928B5790617850A125DE59)
+  "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#tag=$pkgver"
 )
-b2sums=('SKIP')
-
-pkgver() {
-  cd NetworkManager
-  git describe --tags | sed 's/-dev/dev/;s/-rc/rc/;s/[^-]*-g/r&/;s/-/+/g'
-}
+b2sums=('9285561e9c7ffb3e5d60ce60120d53e137c0ec2c36a373ee76befc3c93e54d191ff3187a287fbf05ab97bf8012ce72dd232a6756ebd0d59a5089c92b333a1bd2')
 
 prepare() {
   cd NetworkManager
