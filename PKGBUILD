@@ -57,10 +57,20 @@ checkdepends=(
   python-dbus
 )
 source=(
-  # Can't locate the public key (sfaye@redhat.com, E472337703D0C46002928B5790617850A125DE59)
-  "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#tag=$pkgver"
+  "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=$pkgver"
 )
 b2sums=('9285561e9c7ffb3e5d60ce60120d53e137c0ec2c36a373ee76befc3c93e54d191ff3187a287fbf05ab97bf8012ce72dd232a6756ebd0d59a5089c92b333a1bd2')
+validpgpkeys=(
+  3D10AD045AB4AAFF8E8F36AF9B980AC2FB874FEB # Ana Cabral <acabral@redhat.com>
+  F07F7C1EABD382F81CBFBA3B998D4828CD7E1656 # Beniamino Galvani <bgalvani@redhat.com>
+  2B5F3B2028801E15F57AAA309906C97AA15D984F # Fernando Fernandez Mancera <ffmancera@riseup.net>
+  48FD6FAE515A77B48436821C8789567B8715CEBC # Gris Ge <fge@redhat.com>
+  # Could not locate key ACFA41513D2854D0A72F55BE9A2C77A85F2D72FE # Ján Václav <jvaclav@redhat.com>
+  4B8EF9745A973724E965939189A2DA5AF73D5E3D # Lubomir Rintel <lkundrak@v3.sk>
+  E472337703D0C46002928B5790617850A125DE59 # Stanislas FAYE <sfaye@redhat.com>
+  49EA7C670E0850E7419514F629C2366E4DFC5728 # Thomas Haller <thaller@redhat.com>
+  # Could not locate key 07F9AEC86144386D9576210B66A44781B4EBC2D0 # Íñigo Huguet <ihuguet@redhat.com>
+)
 
 prepare() {
   cd NetworkManager
