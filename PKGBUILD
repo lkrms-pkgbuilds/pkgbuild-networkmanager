@@ -12,20 +12,23 @@ pkgname=(
   nm-cloud-setup
   networkmanager-docs
 )
-pkgver=1.46.0
-pkgrel=2
+pkgver=1.48.0
+pkgrel=1
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
 license=(LGPL-2.1-or-later)
 makedepends=(
   audit
+  bash
   curl
   dhclient
   dhcpcd
   dnsmasq
+  gcc-libs
   git
-  glib2-docs
+  glib2
+  glibc
   gobject-introspection
   gtk-doc
   iproute2
@@ -40,6 +43,7 @@ makedepends=(
   meson
   modemmanager
   nftables
+  nspr
   nss
   openresolv
   pacrunner
@@ -47,7 +51,10 @@ makedepends=(
   polkit
   ppp
   python-gobject
+  python-packaging
+  readline
   systemd
+  systemd-libs
   vala
   vala
   wpa_supplicant
@@ -59,7 +66,7 @@ checkdepends=(
 source=(
   "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=$pkgver"
 )
-b2sums=('9285561e9c7ffb3e5d60ce60120d53e137c0ec2c36a373ee76befc3c93e54d191ff3187a287fbf05ab97bf8012ce72dd232a6756ebd0d59a5089c92b333a1bd2')
+b2sums=('b1a4e2e2861acbb9f498872d32ec1fd2000b03016c09b8153f334a53a95810147670d906fa5326bbbc6bd2555e389418550bae33de9e2f28847efa533a418041')
 validpgpkeys=(
   3D10AD045AB4AAFF8E8F36AF9B980AC2FB874FEB # Ana Cabral <acabral@redhat.com>
   F07F7C1EABD382F81CBFBA3B998D4828CD7E1656 # Beniamino Galvani <bgalvani@redhat.com>
@@ -69,7 +76,7 @@ validpgpkeys=(
   4B8EF9745A973724E965939189A2DA5AF73D5E3D # Lubomir Rintel <lkundrak@v3.sk>
   E472337703D0C46002928B5790617850A125DE59 # Stanislas FAYE <sfaye@redhat.com>
   49EA7C670E0850E7419514F629C2366E4DFC5728 # Thomas Haller <thaller@redhat.com>
-  # Could not locate key 07F9AEC86144386D9576210B66A44781B4EBC2D0 # Íñigo Huguet <ihuguet@redhat.com>
+  07F9AEC86144386D9576210B66A44781B4EBC2D0 # Íñigo Huguet <ihuguet@redhat.com>
 )
 
 prepare() {
@@ -80,9 +87,6 @@ build() {
   local meson_options=(
     # build checks this option; injecting just via *FLAGS is broken
     -D b_lto=true
-
-    # system paths
-    -D dbus_conf_dir=/usr/share/dbus-1/system.d
 
     # platform
     -D dist_version="$pkgver-$pkgrel"
@@ -133,6 +137,9 @@ package_networkmanager() {
   depends=(
     audit
     curl
+    gcc-libs
+    glib2
+    glibc
     iproute2
     jansson
     libmm-glib
@@ -142,6 +149,10 @@ package_networkmanager() {
     libpsl
     libteam
     mobile-broadband-provider-info
+    nspr
+    nss
+    readline
+    systemd-libs
     wpa_supplicant
   )
   optdepends=(
@@ -206,7 +217,10 @@ END
 package_libnm() {
   pkgdesc="NetworkManager client library"
   depends=(
+    gcc-libs
     glib2
+    glibc
+    nspr
     nss
     systemd-libs
     util-linux-libs
@@ -218,7 +232,15 @@ package_libnm() {
 
 package_nm-cloud-setup() {
   pkgdesc="Automatically configure NetworkManager in cloud"
-  depends=(networkmanager)
+  depends=(
+    bash
+    curl
+    gcc-libs
+    glib2
+    glibc
+    libnm
+    networkmanager
+  )
 
   mv cloud/* "$pkgdir"
 }
