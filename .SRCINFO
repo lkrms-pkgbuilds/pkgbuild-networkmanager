@@ -1,7 +1,7 @@
 pkgbase = networkmanager
 	pkgdesc = Network connection manager and user applications
 	pkgver = 1.46.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://networkmanager.dev/
 	arch = x86_64
 	license = LGPL-2.1-or-later
@@ -40,7 +40,11 @@ pkgbase = networkmanager
 	makedepends = vala
 	makedepends = wpa_supplicant
 	source = git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git#commit=e39f48a30a2ef7b445276a859bbd5255e4c5071d
+	source = 0001-fix-ppp-noipv6.patch
+	source = 0002-fix-ppp-disable-ipv6.patch
 	b2sums = SKIP
+	b2sums = 1e4f6c52abd11d511e5d58a2d25935001d61d75451e35be52a65964ddfb054c70b5e5151970b18b0510962583e0b0c3f050c89a6a829c4e515ac367b71dc16c6
+	b2sums = 6c570f25fac1a67d73dd9d8bd8fef4fb29e4b4044a13c833a029f0c878b15847061caf5d3c67b1a447a48aaa3e5f16562116a6a44b0004ce14f8b4fc583da055
 
 pkgname = networkmanager
 	license = LGPL-2.1-or-later
