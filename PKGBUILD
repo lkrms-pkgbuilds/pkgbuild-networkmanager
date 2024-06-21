@@ -27,7 +27,7 @@ makedepends=(
   dnsmasq
   gcc-libs
   git
-  glib2
+  glib2-devel
   glibc
   gobject-introspection
   gtk-doc
@@ -51,7 +51,6 @@ makedepends=(
   polkit
   ppp
   python-gobject
-  python-packaging
   readline
   systemd
   systemd-libs
