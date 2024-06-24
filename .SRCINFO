@@ -1,6 +1,6 @@
 pkgbase = networkmanager
 	pkgdesc = Network connection manager and user applications
-	pkgver = 1.48.0
+	pkgver = 1.48.2
 	pkgrel = 1
 	url = https://networkmanager.dev/
 	arch = x86_64
@@ -16,6 +16,7 @@ pkgbase = networkmanager
 	makedepends = gcc-libs
 	makedepends = git
 	makedepends = glib2
+	makedepends = glib2-devel
 	makedepends = glibc
 	makedepends = gobject-introspection
 	makedepends = gtk-doc
@@ -39,14 +40,13 @@ pkgbase = networkmanager
 	makedepends = polkit
 	makedepends = ppp
 	makedepends = python-gobject
-	makedepends = python-packaging
 	makedepends = readline
 	makedepends = systemd
 	makedepends = systemd-libs
 	makedepends = vala
 	makedepends = vala
 	makedepends = wpa_supplicant
-	source = git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=1.48.0
+	source = git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=1.48.2
 	validpgpkeys = 3D10AD045AB4AAFF8E8F36AF9B980AC2FB874FEB
 	validpgpkeys = F07F7C1EABD382F81CBFBA3B998D4828CD7E1656
 	validpgpkeys = 2B5F3B2028801E15F57AAA309906C97AA15D984F
@@ -55,7 +55,7 @@ pkgbase = networkmanager
 	validpgpkeys = E472337703D0C46002928B5790617850A125DE59
 	validpgpkeys = 49EA7C670E0850E7419514F629C2366E4DFC5728
 	validpgpkeys = 07F9AEC86144386D9576210B66A44781B4EBC2D0
-	b2sums = b1a4e2e2861acbb9f498872d32ec1fd2000b03016c09b8153f334a53a95810147670d906fa5326bbbc6bd2555e389418550bae33de9e2f28847efa533a418041
+	b2sums = 9a728c000cebbb35cbbf1e2ab5d827f4d748165bd3c3dc6401cd4163152556d91b0f04306b074374a6e37e5a23f0f4aa1b1fff86d03e56b1f1cb10893c567c61
 
 pkgname = networkmanager
 	license = LGPL-2.1-or-later
