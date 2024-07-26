@@ -12,7 +12,7 @@ pkgname=(
   nm-cloud-setup
   networkmanager-docs
 )
-pkgver=1.48.4
+pkgver=1.48.6
 pkgrel=1
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
@@ -66,7 +66,7 @@ checkdepends=(
 source=(
   "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=$pkgver"
 )
-b2sums=('323cff19f9d4afb5d3773d74928fc0e6ec819d11ebb30b555e86fdde0e2dc95361d34b60e2ebf3417d9ef1bcf8321658510dda745df0203916a05942c803206e')
+b2sums=('cfa1a7881d24e35eb1bfd41282fdabc47513dbd354740d8988fa30416cab5f3fc2bbac2742a280310366d95479108161f1a1b0f87dbfd8b0b7a1bd0084f421d7')
 validpgpkeys=(
   3D10AD045AB4AAFF8E8F36AF9B980AC2FB874FEB # Ana Cabral <acabral@redhat.com>
   F07F7C1EABD382F81CBFBA3B998D4828CD7E1656 # Beniamino Galvani <bgalvani@redhat.com>
