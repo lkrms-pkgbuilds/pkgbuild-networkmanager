@@ -1,4 +1,5 @@
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Maintainer: Luke Arms <luke@arms.to>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
@@ -13,7 +14,7 @@ pkgname=(
   networkmanager-docs
 )
 pkgver=1.48.10
-pkgrel=1
+pkgrel=3
 pkgdesc="Network connection manager and user applications"
 url="https://networkmanager.dev/"
 arch=(x86_64)
@@ -65,8 +66,12 @@ checkdepends=(
 )
 source=(
   "git+https://gitlab.freedesktop.org/NetworkManager/NetworkManager.git?signed#tag=$pkgver"
+  0001-fix-ppp-noipv6.patch
+  0002-fix-ppp-disable-ipv6.patch
 )
-b2sums=('50ab9977f045f4ffc99aeb5f31c854690078b84d7a8f172d52f924260f999bfee9587bf45cfe4f2c1761a908c244f776435f39aea6b058890ef14b5dbbcf3bcc')
+b2sums=('50ab9977f045f4ffc99aeb5f31c854690078b84d7a8f172d52f924260f999bfee9587bf45cfe4f2c1761a908c244f776435f39aea6b058890ef14b5dbbcf3bcc'
+        'c8a713818d820e78493d90c3a0cc83c5e9f2cd13ed1eb04dadae55d6788c80f77732d98417cd4d7f72233c93880f065b21d2963520bd3180b30c8cc5bc450501'
+        'a64881094e4311dc392ef3efdf539359b619333df428d9e1f24663bd474934690aeb35b6678c495595512855cbe75fccadb607d106bebcbea24d690da87e6f5c')
 validpgpkeys=(
   3D10AD045AB4AAFF8E8F36AF9B980AC2FB874FEB # Ana Cabral <acabral@redhat.com>
   F07F7C1EABD382F81CBFBA3B998D4828CD7E1656 # Beniamino Galvani <bgalvani@redhat.com>
@@ -81,6 +86,9 @@ validpgpkeys=(
 
 prepare() {
   cd NetworkManager
+
+  patch -p1 <"$srcdir/0001-fix-ppp-noipv6.patch"
+  patch -p1 <"$srcdir/0002-fix-ppp-disable-ipv6.patch"
 }
 
 build() {
